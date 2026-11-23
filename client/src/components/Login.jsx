@@ -42,7 +42,7 @@ export default function Login({ onModeSelect }) {
         <div className="flex items-center gap-3 mb-8">
           <div className="w-11 h-11 rounded-2xl bg-accent text-white flex items-center justify-center font-display font-semibold text-lg shadow-soft">C</div>
           <div>
-            <p className="font-display font-semibold text-lg tracking-tight text-ink leading-none">Cohort</p>
+            <p className="font-display font-semibold text-base tracking-tight text-ink leading-none whitespace-nowrap">Campus Connect</p>
             <p className="text-[11px] uppercase tracking-[0.18em] text-muted mt-1">MSRUAS Network</p>
           </div>
         </div>

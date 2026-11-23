@@ -34,7 +34,7 @@ export default function AdminDashboard() {
         <div>
           <div className="flex items-center gap-2.5 mb-1">
             <div className="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-display font-semibold text-sm">A</div>
-            <span className="font-display font-semibold tracking-tight text-ink">Cohort Admin</span>
+            <span className="font-display font-semibold tracking-tight text-ink whitespace-nowrap">Campus Connect Admin</span>
           </div>
           <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-ink mt-2">Control room.</h1>
           <p className="text-sm text-muted mt-1">Monitor activity and moderate your network.</p>

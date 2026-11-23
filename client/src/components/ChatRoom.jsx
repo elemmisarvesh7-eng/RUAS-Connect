@@ -130,7 +130,7 @@ export default function ChatRoom({ user, initialMode = 'video' }) {
         <div className="flex justify-between items-center rounded-full bg-white/80 backdrop-blur-md border border-border/70 shadow-soft px-3 py-2 sm:px-4 sm:py-2.5">
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-accent text-white flex items-center justify-center font-display font-semibold text-sm shrink-0">C</div>
-            <span className="font-display font-semibold text-sm sm:text-base tracking-tight text-ink truncate">Cohort</span>
+            <span className="font-display font-semibold text-sm sm:text-base tracking-tight text-ink whitespace-nowrap">Campus Connect</span>
             <span className="hidden sm:flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] text-muted bg-base px-2.5 py-1 rounded-full border border-border/60 ml-1">
               {mode === 'video' ? 'Video Mode' : 'Text Only'}
             </span>
