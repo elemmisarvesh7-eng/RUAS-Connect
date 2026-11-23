@@ -64,7 +64,7 @@ export default function Login({ onModeSelect }) {
             <input
               type="email" required value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="25etcs002270@msruas.ac.in"
+              placeholder="25etcs002278@msruas.ac.in"
               autoComplete="username"
               className="w-full bg-base border border-transparent focus:bg-white focus:border-accent focus:ring-4 focus:ring-accent/10 rounded-2xl px-4 py-3.5 text-sm text-ink placeholder:text-muted/70 outline-none transition-all"
             />
