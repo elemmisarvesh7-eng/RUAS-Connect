@@ -26,19 +26,8 @@ export default function Login({ onModeSelect }) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.35 }}
-      className="min-h-[100dvh] w-full flex items-center justify-center p-4 sm:p-8"
-    >
-      <motion.div
-        initial={{ y: 16, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="w-full max-w-md rounded-[2rem] bg-white/90 backdrop-blur-xl border border-border/70 shadow-lifted p-7 sm:p-10"
-      >
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }} className="min-h-[100dvh] w-full flex items-center justify-center p-4 sm:p-8">
+      <motion.div initial={{ y: 16, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: 'easeOut' }} className="w-full max-w-md rounded-[2rem] bg-white/90 backdrop-blur-xl border border-border/70 shadow-lifted p-7 sm:p-10">
         <div className="flex items-center gap-3 mb-8">
           <div className="w-11 h-11 rounded-2xl bg-accent text-white flex items-center justify-center font-display font-semibold text-lg shadow-soft">C</div>
           <div>
@@ -61,22 +50,10 @@ export default function Login({ onModeSelect }) {
 
         <form onSubmit={handleSubmit} className="space-y-3.5">
           <div>
-            <input
-              type="email" required value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="25etcs002278@msruas.ac.in"
-              autoComplete="username"
-              className="w-full bg-base border border-transparent focus:bg-white focus:border-accent focus:ring-4 focus:ring-accent/10 rounded-2xl px-4 py-3.5 text-sm text-ink placeholder:text-muted/70 outline-none transition-all"
-            />
+            <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="25etcs002278@msruas.ac.in" autoComplete="username" className="w-full bg-base border border-transparent focus:bg-white focus:border-accent focus:ring-4 focus:ring-accent/10 rounded-2xl px-4 py-3.5 text-sm text-ink placeholder:text-muted/70 outline-none transition-all" />
           </div>
           <div>
-            <input
-              type="password" required minLength={6} value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password (min 6 chars)"
-              autoComplete="current-password"
-              className="w-full bg-base border border-transparent focus:bg-white focus:border-accent focus:ring-4 focus:ring-accent/10 rounded-2xl px-4 py-3.5 text-sm text-ink placeholder:text-muted/70 outline-none transition-all"
-            />
+            <input type="password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password (min 6 chars)" autoComplete="current-password" className="w-full bg-base border border-transparent focus:bg-white focus:border-accent focus:ring-4 focus:ring-accent/10 rounded-2xl px-4 py-3.5 text-sm text-ink placeholder:text-muted/70 outline-none transition-all" />
           </div>
 
           {error && <div className="rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs px-3.5 py-2.5">{error}</div>}

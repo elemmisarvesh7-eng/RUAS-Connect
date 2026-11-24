@@ -16,11 +16,8 @@ const io = new Server(server, { cors: { origin: '*' } });
 
 app.use(cors());
 
-// -------------------- state --------------------
-// We are bringing back the users Map for persistent registration
 const users = new Map();
 const sessions = new Map();            
-const bannedIds = new Set();           
 const emailToSocket = new Map();       
 const socketToEmail = new Map();       
 const queues = { video: [], text: [] }; 
@@ -30,7 +27,6 @@ const reports = [];
 let totalMatches = 0;
 let totalFlagged = 0;
 
-// -------------------- helpers --------------------
 const hashPassword = (pw, salt = crypto.randomBytes(16).toString('hex')) => ({
   salt, hash: crypto.scryptSync(pw, salt, 64).toString('hex')
 });
@@ -83,7 +79,6 @@ const broadcastAdmin = () => {
   }, 100);
 };
 
-// -------------------- pairing --------------------
 const dequeue = socket => {
   ['video', 'text'].forEach(m => {
     const i = queues[m].indexOf(socket.id);
@@ -181,6 +176,7 @@ io.on('connection', socket => {
     
     if (u) {
       if (u.banned) return socket.emit('auth_error', 'This ID has been suspended.');
+      // STRICT PASSWORD CHECK
       if (!checkPassword(password, u.salt, u.hash))
         return socket.emit('auth_error', 'Incorrect password for this ID.');
     } else {
@@ -218,12 +214,6 @@ io.on('connection', socket => {
     queues[mode].push(socket.id);
     socket.emit('waiting');
     tryMatch(mode);
-  });
-
-  socket.on('skip_partner', () => {
-    dequeue(socket);
-    unpair(socket, true);
-    broadcastAdmin();
   });
 
   socket.on('send_message', text => {
@@ -282,13 +272,6 @@ io.on('connection', socket => {
     broadcastAdmin();
   }));
 
-  socket.on('admin_reset_all_users', () => adminOnly(() => {
-    for (const e of [...users.keys()]) killUserSessions(e, 'All registrations were reset by an admin.');
-    users.clear();
-    sessions.clear();
-    broadcastAdmin();
-  }));
-
   socket.on('admin_ban_user', email => adminOnly(() => {
     const e = String(email || '').toLowerCase();
     const u = users.get(e);
@@ -312,15 +295,11 @@ io.on('connection', socket => {
   }));
 });
 
-
-// --- Serve React Frontend ---
 app.use(express.static(path.join(__dirname, 'client', 'dist')));
-
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
-// --------------------------
 
 server.listen(PORT, () => {
-  console.log(`CampusLink Unified Server running on port ${PORT}`);
+  console.log(`Campus Connect Unified Server running on port ${PORT}`);
 });

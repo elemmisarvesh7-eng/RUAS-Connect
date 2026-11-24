@@ -20,7 +20,6 @@ export default function ChatRoom({ user, initialMode = 'video' }) {
   const chatBoxRef = useRef(null);
   const typingTimeout = useRef(null);
 
-  // Helper to request camera
   const requestCamera = async () => {
     if (localStream.current) return true;
     try {
@@ -34,7 +33,6 @@ export default function ChatRoom({ user, initialMode = 'video' }) {
     }
   };
 
-  // Ask for camera immediately on load if mode is video
   useEffect(() => {
     if (mode === 'video') {
       requestCamera().then(success => {
@@ -79,7 +77,7 @@ export default function ChatRoom({ user, initialMode = 'video' }) {
     if (mode === 'video' && !localStream.current) {
       const success = await requestCamera();
       if (!success) {
-        appendSystemMessage('No camera found. Switched to Text Mode.');
+        appendSystemMessage('Camera denied. Switched to Text Mode.');
         finalMode = 'text';
         setMode('text');
       }

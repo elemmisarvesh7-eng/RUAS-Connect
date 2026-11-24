@@ -25,11 +25,7 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="min-h-[100dvh] w-full p-4 sm:p-8 lg:p-12 max-w-6xl mx-auto"
-    >
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-[100dvh] w-full p-4 sm:p-8 lg:p-12 max-w-6xl mx-auto">
       <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 sm:mb-10">
         <div>
           <div className="flex items-center gap-2.5 mb-1">
@@ -39,12 +35,7 @@ export default function AdminDashboard() {
           <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-ink mt-2">Control room.</h1>
           <p className="text-sm text-muted mt-1">Monitor activity and moderate your network.</p>
         </div>
-        <button
-          onClick={() => window.location.reload()}
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-muted hover:text-ink bg-white border border-border/70 px-4 py-2.5 rounded-full shadow-soft transition-colors"
-        >
-          <LogOut size={14} /> Exit
-        </button>
+        <button onClick={() => window.location.reload()} className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-muted hover:text-ink bg-white border border-border/70 px-4 py-2.5 rounded-full shadow-soft transition-colors"><LogOut size={14} /> Exit</button>
       </header>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-10">
@@ -62,14 +53,9 @@ export default function AdminDashboard() {
       <div className="rounded-3xl bg-white border border-border/70 shadow-soft p-5 sm:p-6 mb-6">
         <h2 className="font-display font-semibold text-lg text-ink mb-3">Live branch activity</h2>
         <div className="flex flex-wrap gap-2">
-          {Object.keys(stats.branchBreakdown || {}).length === 0 && (
-            <span className="text-xs text-muted italic">No one is online right now.</span>
-          )}
+          {Object.keys(stats.branchBreakdown || {}).length === 0 && <span className="text-xs text-muted italic">No one is online right now.</span>}
           {Object.entries(stats.branchBreakdown || {}).map(([branch, count]) => (
-            <span key={branch} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-soft text-accent text-xs font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
-              {branch} <span className="text-accent/70">· {count}</span>
-            </span>
+            <span key={branch} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-soft text-accent text-xs font-medium"><span className="w-1.5 h-1.5 rounded-full bg-accent"></span>{branch} <span className="text-accent/70">· {count}</span></span>
           ))}
         </div>
       </div>
@@ -120,10 +106,7 @@ export default function AdminDashboard() {
             {stats.bannedList.map((email) => (
               <span key={email} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs">
                 {email}
-                <button
-                  onClick={() => socket.emit('admin_unban_user', email)}
-                  className="text-[10px] uppercase tracking-[0.14em] text-red-600 hover:underline"
-                >unban</button>
+                <button onClick={() => socket.emit('admin_unban_user', email)} className="text-[10px] uppercase tracking-[0.14em] text-red-600 hover:underline">unban</button>
               </span>
             ))}
           </div>
